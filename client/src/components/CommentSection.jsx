@@ -82,6 +82,17 @@ export default function CommentSection({ postId }) {
     }
   };
 
+  const handleEdit = async (comment, editedContent) => { 
+    //step 1: create an api route of edit
+    //step 2: create ui
+    //step 2: connect them together and show their functionality in the front-end
+    setComments(
+      comments.map((c) =>
+        c._id === comment._id ? { ...c, content: editedContent } : c
+      )
+    );
+  };
+
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -145,7 +156,7 @@ export default function CommentSection({ postId }) {
             </div>
           </div>
           {comments.map((comment) => (
-            <Comment key={comment._id} comment={comment} onLike={handleLike} />
+            <Comment key={comment._id} comment={comment} onLike={handleLike} onEdit={handleEdit}/>
           ))}
         </>
       )}
